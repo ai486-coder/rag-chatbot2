@@ -1,23 +1,25 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "api/chat.py",
-      "use": "@vercel/python"
-    },
-    {
-      "src": "apps/web/next.config.js",
-      "use": "@vercel/next"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "api/chat.py"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "apps/web/$1"
-    }
-  ]
+"version": 2,
+"buildCommand": "pnpm install --no-frozen-lockfile && turbo build",
+"builds": [
+{
+"src": "api/chat.py",
+"use": "@vercel/python"
+},
+{
+"src": "apps/web/next.config.js",
+"use": "@vercel/next"
 }
+],
+"routes": [
+{
+"src": "/api/(.)",
+"dest": "api/chat.py"
+},
+{
+"src": "/(.)",
+"dest": "apps/web/$1"
+}
+]
+}
+
